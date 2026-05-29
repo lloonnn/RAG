@@ -6,7 +6,7 @@ from langchain_community.document_loaders import (
     TextLoader,
     # WebBaseLoader,
     # DirectoryLoader,
-    # PyPDFLoader,
+    PyPDFLoader,
 )
 
 from dotenv import load_dotenv
@@ -39,5 +39,19 @@ def load_text_file():
         # Clean up the temporary file
         os.remove(temp_file_path)
 
+def pdf_loader(pdf_path: str):
+    loader = PyPDFLoader(pdf_path)
+    documents = loader.load();
+
+    print("=" * 35)
+    print(f"Loaded {len(documents)} document(s) from PDF")
+    for i, doc in enumerate(documents):
+        print(f"Document {i+1} Content Preview: {doc.page_content[:100]}")
+        print(f"Metadata: {doc.metadata}")
+        print()
+    print("=" * 35)
+    
+
 if __name__ == "__main__":
-    load_text_file()
+    # load_text_file()
+    pdf_loader("./docs/langchain_demo.pdf")
