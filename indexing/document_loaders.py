@@ -1,11 +1,7 @@
 import os
-import sys
 import tempfile
-from pathlib import Path
 from langchain_community.document_loaders import (
     TextLoader,
-    # WebBaseLoader,
-    # DirectoryLoader,
     PyPDFLoader,
 )
 
@@ -15,8 +11,8 @@ load_dotenv()
 
 def load_text_file():
     # Create a temporory text file for documentation 
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".txt") as temp_file:
-        temp_file.write(b"Hello, this is a sample text file.\nThis is used to demonstrate the TextLoader.")
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".txt") as temp_file: 
+        temp_file.write(b"Hello, this is a sample text file.\nThis is used to demonstrate the TextLoader.") #.write()expect binary from NamedTemporaryFile
         temp_file_path = temp_file.name
 
     try:
@@ -54,4 +50,5 @@ def pdf_loader(pdf_path: str):
 
 if __name__ == "__main__":
     # load_text_file()
-    pdf_loader("./docs/langchain_demo.pdf")
+    pdf_loader("./resources/docs/langchain_demo.pdf")
+
